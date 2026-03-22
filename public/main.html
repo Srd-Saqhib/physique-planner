@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physique Planner</title>
+  <link rel="stylesheet" href="style_main.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo_head">
+      <!-- <img src="" alt="Logo"> -->
+      <h2>Physique Planner</h2>
+    </div>
+
+    <ul>
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('workout')">Workout</a></li>
+      <li><a href="#" onclick="showSection('nutrition')">Nutrition</a></li>
+      <li><a href="#" onclick="showSection('profile')">Profile</a></li>
+    </ul>
+
+  </header>
+  <main>
+    <section class="home">
+      <div class="about">
+        <h2>Welcome to Physique Planner</h2>
+        <p>Your personal guide to fitness, workouts, and nutrition.</p>
+        <button class="about-btn" onclick="showSection('workout')">Start Workout</button>
+      </div>
+
+      <div class="image-quote1">
+        <div class="quote-text">
+          <h2>Push Yourself to the Limit</h2>
+          <p>“The only bad workout is the one you didn’t do.” Stay consistent, stay disciplined, and transform your body
+            and mind with Physique Planner.</p>
+          <button class="quote-btn" onclick="showSection('workout')">Get Started</button>
+        </div>
+
+        <div class="quote-image">
+          <img src="/assets/david_laid.avif" alt="Workout Illustration" height="450px">
+        </div>
+      </div>
+
+      <div class="nut-quote">
+        <div class="nut-img">
+          <img src="/assets/cbum.jpg" alt="Nutrition" height="450px">
+        </div>
+
+        <div class="nut-text">
+          <h2>Transform Your Life, Not Just Your Body</h2>
+          <p>Change Begins the Day You Decide to Stay Consistent.</p>
+          <p>It’s Not a Short-Term Diet — It’s a Long-Term Lifestyle Change</p>
+          <button class="quote-btn" onclick="showSection('nutrition')">Get Started</button>
+        </div>
+
+      </div>
+
+
+    </section>
+
+    <section class="workout">
+      <div class="daily-score">
+        <div class="streak-container">
+          <div class="streak-header">🔥 Workout Streak</div>
+          <div class="flame">🔥</div>
+          <div class="streak-count">7 Days</div>
+
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <div class="goal-text">Goal: 30-Day Challenge (23% Complete)</div>
+
+          <div class="streak-badges">
+            <div class="badge active">7</div>
+            <div class="badge">14</div>
+            <div class="badge">30</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="trending-btn-box">
+        <button class="trending-btn" onclick="showTrending()">🔥 View Trending Workout Splits</button>
+      </div>
+
+      <div class="overlay-trending" id="trendingOverlay">
+        <div class="popup-trending">
+          <div class="close-btn" onclick="closeTrending()">✖</div>
+          <h2>🔥 Trending Workout Splits</h2>
+          <ul>
+            <li><strong>Push / Pull / Legs Split</strong> — Balanced training for strength and size.</li>
+            <li><strong>Upper / Lower Split</strong> — Great for 4-day weekly workouts.</li>
+            <li><strong>Bro Split</strong> — One muscle per day: Chest, Back, Shoulders, Arms, Legs.</li>
+            <li><strong>Full Body Split</strong> — Best for beginners and fat loss routines.</li>
+            <li><strong>PHUL Split</strong> — Combines Power and Hypertrophy for growth.</li>
+            <li><strong>Arnold Split</strong> — Classic 6-day program for advanced lifters.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="strength">
+        <h2>Strength Training</h2>
+        <div class="muscle-groups">
+
+          <div class="muscle-group-row">
+            <div class="muscle-box" onclick="fetchExercises('chest')">Chest</div>
+            <div class="muscle-box" onclick="fetchExercises('back')">Back</div>
+            <div class="muscle-box" onclick="fetchExercises('shoulders')">Shoulders</div>
+            <div class="muscle-box" onclick="fetchExercises('biceps')">Biceps</div>
+            <div class="muscle-box" onclick="fetchExercises('triceps')">Triceps</div>
+            <div class="muscle-box" onclick="fetchExercises('legs')">Legs</div>
+            <div class="muscle-box" onclick="fetchExercises('abs')">Abs</div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="overlay">
+        <div class="popup">
+          <div class="back" onclick="document.querySelector('.overlay').style.display = 'none'">←</div>
+          <h2 id="muscle-title"></h2>
+          <div id="exercise-container"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="nutrition">
+      <div class="nutrition-container">
+        <h2>🥗 Nutrition Guide</h2>
+
+        <div class="search-bar">
+          <input type="text" id="foodSearch" placeholder="Search food...">
+          <button type="submit" onclick="searchFood()">Search</button>
+        </div>
+
+        <div id="food-results" class="food-grid"></div>
+
+
+        <p>Nutritious foods to help you build muscle, burn fat, and stay healthy!</p>
+
+        <div class="food-grid">
+
+          <div class="food-card">   
+            <img src="https://www.spiceindiaonline.com/wp-content/uploads/2021/05/Tandoori-Chicken-20-500x400.jpg"
+              alt="Chicken Breast">
+            <h3>Chicken Breast</h3>
+            <p>🔥 165 kcal (100g)</p>
+            <p>💪 31g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img src="https://cdn.shopify.com/s/files/1/0609/1427/0467/files/Blog_Images_79_480x480.png?v=1686995128"
+              alt="Brown Rice">
+            <h3>Brown Rice</h3>
+            <p>🔥 112 kcal (100g)</p>
+            <p>💪 2.6g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img
+              src="https://images.immediate.co.uk/production/volatile/sites/30/2024/06/Salmon440-c31e768.jpg?quality=90&resize=440,400"
+              alt="Salmon">
+            <h3>Salmon</h3>
+            <p>🔥 208 kcal (100g)</p>
+            <p>💪 20g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img src="https://www.licious.in/blog/wp-content/uploads/2022/03/shutterstock_245119171-min-1-600x600.jpg"
+              alt="Eggs">
+            <h3>Eggs</h3>
+            <p>🔥 155 kcal (100g)</p>
+            <p>💪 13g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2023/12/Tawa-Paneer-Masala-Recipe.jpg"
+              alt="Paneer">
+            <h3>Paneer (Cottage Cheese)</h3>
+            <p>🔥 265 kcal (100g)</p>
+            <p>💪 18g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img
+              src="https://images.immediate.co.uk/production/volatile/sites/30/2023/08/Porridge-oats-d09fae8.jpg?quality=90&resize=440,400"
+              alt="Oats">
+            <h3>Oats</h3>
+            <p>🔥 389 kcal (100g)</p>
+            <p>💪 16.9g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img src="https://tastythriftytimely.com/wp-content/uploads/2024/05/Crispy-Baked-Tofu-5.jpg" alt="Tofu">
+            <h3>Tofu</h3>
+            <p>🔥 76 kcal (100g)</p>
+            <p>💪 8g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2021/02/almonds-9e25ce7.jpg"
+              alt="Almonds">
+            <h3>Almonds</h3>
+            <p>🔥 579 kcal (100g)</p>
+            <p>💪 21g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img
+              src="https://www.eatingwell.com/thmb/nOQUtHX_CnVRGcw34lF_yMsMwuI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/homemade-plain-greek-yogurt-beauty-5323c43bb8ef4bf891e42d6e5023381b.jpg"
+              alt="Greek Yogurt">
+            <h3>Greek Yogurt</h3>
+            <p>🔥 59 kcal (100g)</p>
+            <p>💪 10g protein</p>
+          </div>
+
+          <div class="food-card">
+            <img
+              src="https://cdn.media.amplience.net/i/japancentre/recipe-1668-japanese-baked-sweet-potato/Japanese-baked-sweet-potato?$poi$&w=700&h=410&sm=c&fmt=auto"
+              alt="Sweet Potato">
+            <h3>Sweet Potato</h3>
+            <p>🔥 86 kcal (100g)</p>
+            <p>💪 1.6g protein</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="profile">
+      <div class="profile-header">
+        <h2>Your Profile</h2>
+      </div>
+
+      <div class="profile-wrapper">
+
+        <div class="profile-card">
+
+          <div class="profile-left">
+            <img
+              src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
+              alt="User Avatar" class="profile-pic">
+
+            <button class="edit-btn">Edit</button>
+          </div>
+
+          <div class="profile-right">
+
+            <h3 id="username">Saqhib</h3>
+            <p id="user-email" class="email">saqhib@example.com</p>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <h4>62 kg</h4>
+                <p>Weight</p>
+              </div>
+              <div class="stat-box">
+                <h4>170 cm</h4>
+                <p>Height</p>
+              </div>
+              <div class="stat-box">
+                <h4>21.5</h4>
+                <p>BMI</p>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <p><strong>Goal:</strong> Muscle Gain</p>
+              <p><strong>Target:</strong> 70 kg</p>
+
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 40%;"></div>
+              </div>
+            </div>
+
+            <div class="achievement-box">
+              <span class="badge">🔥 Streak: 7 Days</span>
+              <span class="badge">💪 Beginner</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <footer>
+    <p>&copy; Physique Planner, All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

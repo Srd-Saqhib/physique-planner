@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Buddy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h2>Physique Planner</h2>
+    </nav>
+
+  </header>
+  <main>
+    <h3>What is your Goal?</h3>
+    <div class="container">
+      <div class="option bulking" onclick="showform('bulking')">
+        <h2>💪 Bulking</h2>
+        <p>Build muscle and strength</p>
+      </div>
+      <div class="option cutting" onclick="showform('cutting')">
+        <h2>🔥 Cutting</h2>
+        <p>Lose fat and get lean</p>
+      </div>
+    </div>
+
+    <p>Already have an account? <a href="#" onclick="showsignin()">Sign-in</a></p>
+  </main>
+
+  <div id="formSection" style="display:none;">
+    <h2 id="formTitle"></h2>
+    <form id="userForm" action="/register" method="POST">
+
+      <h3>Account Details</h3>
+      <label>Full Name:</label>
+      <input type="text" name="name" placeholder="Enter your name" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+
+      <label>Password:</label>
+      <input type="password" name="password" placeholder="Create a password" required>
+
+      <hr style="border: 0.5px solid #334155; margin: 15px 0;">
+
+      <h3>Fitness Information</h3>
+      <label>Age:</label>
+      <input type="number" name="age" placeholder="Enter your age" required>
+
+      <label>Gender:</label>
+      <select name="gender" required>
+        <option value="">Select gender</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+      <label>Height (cm):</label>
+      <input type="number" name="height" placeholder="Enter your height" required>
+
+      <label>Weight (kg):</label>
+      <input type="number" name="weight" placeholder="Enter your weight" required>
+
+      <label>Activity Level:</label>
+      <select name="activity" required>
+        <option value="">Select level</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+
+      <div class="btn-form-container">
+        <button type="submit" class="Btn-form" href="/register">Register</button>
+      </div>
+
+      <p style="text-align:center; margin-top:10px;">
+        Already registered?
+        <a href="#" onclick="showLogin()">Login</a>
+      </p>
+    </form>
+  </div>
+
+  <div id="loginSection" style="display:none;">
+  <h2 id="loginTitle">Login</h2>
+  <form id="loginForm" action="/login" method="POST">
+    <label>Email:</label>
+    <input type="email" name="email" placeholder="Enter your email" required>
+
+    <label>Password:</label>
+    <input type="password" name="password" placeholder="Enter your password" required>
+
+    <div class="btn-form-container">
+      <button type="submit" class="Btn-form" href="/login">Login</button>
+    </div>
+
+    <p style="margin-top:15px;">
+      Don’t have an account? 
+      <a href="#" onclick="showRegister()">Register</a>
+    </p>
+  </form>
+</div>
+
+
+  <script>
+  const main = document.querySelector('main');
+  const formSection = document.querySelector('#formSection');
+  const formTitle = document.querySelector('#formTitle');
+  const loginSection = document.querySelector('#loginSection');
+  const loginTitle = document.querySelector('#loginTitle');
+  const registerButton = formSection.querySelector('.Btn-form');
+  const loginButton = loginSection.querySelector('.Btn-form');
+  const loginRegisterLink = loginSection.querySelector('p');
+
+  let currentGoal = null;
+  let directLogin = false; 
+
+  function showform(goal) {
+    main.style.display = "none";
+    formSection.style.display = "block";
+    loginSection.style.display = "none";
+
+    directLogin = false;
+    currentGoal = goal;
+
+    if (goal === 'bulking') {
+      formTitle.innerHTML = "💪 Bulking Registration";
+      formSection.style.border = "2px solid #8bf7b3";
+      formSection.style.boxShadow = "0 0 25px rgba(0, 255, 162, 0.5)";
+      registerButton.style.backgroundColor = '#8bf7b3';
+    } else {
+      formTitle.innerHTML = "🔥 Cutting Registration";
+      formSection.style.border = "2px solid #81eded";
+      formSection.style.boxShadow = "0 0 25px #a0fbfb";
+      registerButton.style.backgroundColor = '#81eded';
+    }
+  }
+
+  function showLogin() {
+    formSection.style.display = 'none';
+    loginSection.style.display = 'block';
+
+    
+    loginRegisterLink.style.display = directLogin ? 'none' : 'block';
+
+    if (currentGoal === 'bulking') {
+      loginSection.style.border = "2px solid #8bf7b3";
+      loginSection.style.boxShadow = "0 0 25px rgba(0, 255, 162, 0.5)";
+      loginTitle.style.color = "#8bf7b3";
+      loginButton.style.backgroundColor = '#8bf7b3';
+    } else {
+      loginSection.style.border = "2px solid #81eded";
+      loginSection.style.boxShadow = "0 0 25px #a0fbfb";
+      loginTitle.style.color = "#81eded";
+      loginButton.style.backgroundColor = '#81eded';
+    }
+  }
+
+  function showRegister() {
+    loginSection.style.display = 'none';
+    formSection.style.display = 'block';
+    directLogin = false;
+  }
+
+  function showsignin() {
+    main.style.display = 'none';
+    loginSection.style.display = 'block';
+    formSection.style.display = 'none';
+
+    directLogin = true;
+
+  
+    loginSection.style.border = "2px solid #81eded";
+    loginSection.style.boxShadow = "0 0 25px #a0fbfb";
+    loginTitle.style.color = "#81eded";
+    loginButton.style.backgroundColor = '#81eded';
+    loginRegisterLink.style.display = 'none';
+  }
+</script>
+
+
+</body>
+
+</html>
